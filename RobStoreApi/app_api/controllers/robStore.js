@@ -227,20 +227,11 @@ const getProducts = async (req, res) => {
     try{
         let products = await STORE.find({}).lean();
         console.debug("Get Products found " + products.length);
-        // for(var product of products){
-        //    var historObjects = await getProductHistory(product);
-        //    console.debug("History objects found length " + historObjects.length + " " +
-        //    product.name);
-        //    if(historObjects.length > 0){
-        //        product.history = {...historObjects};
-        //        console.log(product);
-        //    }
-           
-        // }
         res.status(200)
             .json(products);
     }catch(error){
-        return res.status(404).json(err);
+        console.error(error);
+        return res.status(404).json(error);
     }
 };
 
